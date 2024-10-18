@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <Header />
-      {/* <TrackerBoard /> */}
-      <Demo />
+      <TrackerBoard />
+      {/* <Demo /> */}
     </>
   );
 }

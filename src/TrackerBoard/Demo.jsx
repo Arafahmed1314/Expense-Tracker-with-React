@@ -2,7 +2,7 @@ import { useState } from "react";
 import Expense from "./Expenses/Expense";
 import Income from "./Income";
 import AllBalances from "./AllBalances";
-import Test from "./ExpenseTracker";
+import Test from "./Test";
 
 export default function Demo() {
   const [tasks, setTasks] = useState([]);

@@ -21,17 +21,16 @@ export default function ExpenseTracker({ onSave, taskToUpdate }) {
   }
 
   // Handle tab click
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
-    setFormValue((prevState) => ({
-      ...prevState,
-      type: tab,
-      category: isAdd
-        ? tab === "expense"
-          ? "Education"
-          : "Salary"
-        : prevState.category,
-    }));
+    setFormValue({
+      id: crypto.randomUUID(),
+      type: tab, // Set the correct type based on the tab
+      category: tab === "expense" ? "Education" : "Salary", // Default categories based on type
+      amount: "",
+      date: new Date(),
+    });
   };
 
   // Handle form input changes
@@ -53,15 +52,15 @@ export default function ExpenseTracker({ onSave, taskToUpdate }) {
     onSave(updatedFormValue);
 
     // Reset form if it's for adding a new task
-    if (isAdd) {
-      setFormValue({
-        id: crypto.randomUUID(),
-        type: activeTab,
-        category: activeTab === "expense" ? "Education" : "Salary",
-        amount: "",
-        date: new Date(),
-      });
-    }
+    // if (isAdd) {
+    setFormValue({
+      id: crypto.randomUUID(),
+      type: activeTab,
+      category: activeTab === "expense" ? "Education" : "Salary",
+      amount: "",
+      date: new Date(),
+    });
+    // }
   };
 
   // Format the date to "yyyy-MM-dd"
@@ -117,7 +116,7 @@ export default function ExpenseTracker({ onSave, taskToUpdate }) {
             >
               {activeTab === "expense" ? (
                 <>
-                  <option>Education</option>
+                  <option value="Education">Education</option>
                   <option>Food</option>
                   <option>Health</option>
                   <option>Bill</option>
@@ -128,7 +127,7 @@ export default function ExpenseTracker({ onSave, taskToUpdate }) {
                 </>
               ) : (
                 <>
-                  <option>Salary</option>
+                  <option value="Salary">Salary</option>
                   <option>Outsourcing</option>
                   <option>Bond</option>
                   <option>Dividend</option>
